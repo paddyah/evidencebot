@@ -5,6 +5,7 @@ import discord.ext.commands
 
 from evidencebot import commands
 from evidencebot import config
+from evidencebot import db
 from evidencebot import log
 from evidencebot.lib import exception, util
 

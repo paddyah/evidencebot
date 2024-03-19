@@ -13,6 +13,11 @@ log_level: str
 # The location for EvidenceBot's log
 log_location: logging.Handler
 
+# Flag which tells if a database connection is enabled
+database_enabled: bool
+# MongoDB URI
+database_uri: urllib.parse.ParseResult
+
 
 def populate_config_from_command_line() -> None:
     parser = argparse.ArgumentParser()
@@ -60,6 +65,28 @@ def populate_config_from_command_line() -> None:
         type=validators.validate_log_location,
     )
 
+    # Database Configuration
+    parser.add_argument(
+        "--nodb",
+        help="Disable the database connection, and all features which require it.",
+        dest="database_enabled",
+        action="store_false",
+    )
+    parser.set_defaults(
+        database_enabled=validators.validate_bool(
+            os.getenv("EVIDENCEBOT_DATABASE_ENABLED", str(True))
+        )
+    )
+
+    parser.add_argument(
+        "--database-uri",   
+        help="URI of the MongoDB database server",
+        default=urllib.parse.urlparse(
+            os.getenv("EVIDENCEBOT_DATABASE_URI", "mongodb://127.0.0.1:27017")
+        ),
+        type=urllib.parse.urlparse,
+    )
+
     args = parser.parse_args()
 
     global discord_api_token
@@ -69,6 +96,11 @@ def populate_config_from_command_line() -> None:
     global log_location
     log_level = args.log_level
     log_location = args.log_location
+
+    global database_enabled
+    global database_uri
+    database_enabled = args.database_enabled
+    database_uri = args.database_uri
 
 
 populate_config_from_command_line()

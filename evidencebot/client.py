@@ -82,6 +82,7 @@ evidencebot = discord.ext.commands.Bot(
 )
 
 evidencebot.tree.add_command(commands.hello)
+evidencebot.tree.add_command(commands.evidence)
 
 evidencebot.add_listener(on_ready)
 evidencebot.add_listener(on_interaction)

@@ -1,5 +1,5 @@
 discord.py==2.1.0
 pymongo
-pymong-stubs
+pymongo-stubs
 emoji==2.0.0
 types-emoji==2.0.0

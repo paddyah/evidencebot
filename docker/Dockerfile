@@ -13,21 +13,13 @@ RUN python3 -m venv /opt/venv
 ENV PATH="/opt/venv/bin:$PATH"
 RUN python3 -m pip install --no-cache-dir -r requirements.txt
 
-FROM build as build-test
-COPY tests tests
-RUN python3 -m pip install --no-cache-dir -r tests/requirements.txt
-
 # Prepare run image.
 FROM python:3.9.6-slim as run-base
 WORKDIR /opt/evidencebot/
 ENV PATH="/opt/venv/bin:$PATH"
-COPY src src
-ENTRYPOINT ["python3", "src/main.py"]
+COPY . .
+ENTRYPOINT ["python3", "main.py"]
 
 # Run release build.
 FROM run-base as release
 COPY --from=build /opt/venv /opt/venv
-
-# Run test build.
-FROM run-base as test
-COPY --from=build-test /opt/venv /opt/venv

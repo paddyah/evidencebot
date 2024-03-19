@@ -82,7 +82,7 @@ def populate_config_from_command_line() -> None:
         "--database-uri",   
         help="URI of the MongoDB database server",
         default=urllib.parse.urlparse(
-            os.getenv("EVIDENCEBOT_DATABASE_URI", "mongodb://172.17.0.2:27017")
+            os.getenv("EVIDENCEBOT_DATABASE_URI", "mongodb://127.0.0.1:27017")
         ),
         type=urllib.parse.urlparse,
     )

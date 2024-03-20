@@ -42,6 +42,7 @@ To see which environment variables can be used to configure Evidencebot, see [te
 Current commands that can be used in Discord:
 
     !hello - Say "hello" to Evidencebot!
+    !evidence - Store and retrieve random evidence (either from all users or a specific user)
 
 ## Docker
 Evidencebot has a straightforward Docker image that can be build based on the [Dockerfile](./docker/Dockerfile) in this 

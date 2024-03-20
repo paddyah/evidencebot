@@ -23,7 +23,7 @@ async def store(interaction: discord.Interaction) -> None:
         match = re.search(r"^\"(.*)\"[^A-z]+([A-z]+)", message.content)
         if match is not None:
             messages.append({"content": message.content, "author": match.group(2).lower()})
-    await interaction.response.send_message(f"Storing messages in {channel.name}")
+    await interaction.response.send_message(f"Stored evidence in #{channel.name}")
 
 
 @evidence.command()

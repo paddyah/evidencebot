@@ -38,5 +38,5 @@ async def retrieve(interaction: discord.Interaction, author_name: str =None) -> 
     else:
         author_messages = list(filter(lambda message: message['author'] == author_name.lower(), messages))
         if not author_messages:
-            await interaction.response.send_message(f"No messages stored by {author_name} {author_messages} {messages}")
+            await interaction.response.send_message(f"No messages stored by {author_name}")
         await interaction.response.send_message(f"{random.choice(author_messages)['content']}")

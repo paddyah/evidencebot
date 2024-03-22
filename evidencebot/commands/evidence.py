@@ -18,6 +18,7 @@ async def store(interaction: discord.Interaction) -> None:
     """
     Sets channel for downloading evidence
     """
+    messages.clear()
     channel = interaction.channel
     async for message in channel.history():
         match = re.search(r"^\"(.*)\"[^A-z]+([A-z]+)", message.content)
